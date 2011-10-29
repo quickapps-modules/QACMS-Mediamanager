@@ -13,7 +13,7 @@
 class MediamanagerHookHelper extends AppHelper {
     
     public function form_textarea_alter(&$data) {
-        if (($settings = Configure::read('Modules.wysiwyg.settings')) && isset($data['options']['class']) && strpos($data['options']['class'], 'full') !== false) {
+        if (($settings = Configure::read('Modules.Wysiwyg.settings')) && isset($data['options']['class']) && strpos($data['options']['class'], 'full') !== false) {
             if (isset($data['options']['id'])) {
                 $field_id = $data['options']['id'];
             } else {
