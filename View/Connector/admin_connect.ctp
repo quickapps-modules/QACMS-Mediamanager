@@ -4,6 +4,7 @@ if (function_exists('date_default_timezone_set'))
 
 App::import('Lib', 'Mediamanager.ElFinder');
 App::import('Lib', 'Mediamanager.elFinderLogger');
+Configure::write('debug', 0);
 
 $opts = array(
 	'root'            => APP . 'webroot' . DS . 'files', // path to root directory
