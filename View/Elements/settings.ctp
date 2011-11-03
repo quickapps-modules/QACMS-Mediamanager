@@ -9,7 +9,7 @@
     $().ready(function() {
         $('#finder').elfinder({
             places: '',
-            url : '<?php echo $this->Html->url('/admin/mediamanager/connector/connect'); ?>',
+            url : '<?php echo $this->Html->url('/admin/mediamanager/connector/connect', true); ?>',
             lang : '<?php echo Configure::read('Variable.language.code'); ?>',
             docked : true
         })			
