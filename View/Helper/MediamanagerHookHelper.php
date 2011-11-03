@@ -11,9 +11,14 @@
  * @link     http://www.quickapps.es
  */
 class MediamanagerHookHelper extends AppHelper {
-    
+    private $__Wysiwyg = null;
+
     public function form_textarea_alter(&$data) {
-        if (($settings = Configure::read('Modules.Wysiwyg.settings')) && isset($data['options']['class']) && strpos($data['options']['class'], 'full') !== false) {
+        if ($this->__Wysiwyg === null) {
+            $this->__Wysiwyg = Configure::read('Modules.Wysiwyg'); // may be slow
+        }
+
+        if ($this->__Wysiwyg && isset($data['options']['class']) && strpos($data['options']['class'], 'full') !== false) {
             if (isset($data['options']['id'])) {
                 $field_id = $data['options']['id'];
             } else {
@@ -27,14 +32,15 @@ class MediamanagerHookHelper extends AppHelper {
 
             $after = $this->_View->Html->script('/mediamanager/js/elfinder/elfinder.min.js');
 
-            switch ($settings['editor']) {
-                case 'ckeditor':
-                $after .= '
-<script>
-    CKEDITOR.replace("' . $field_id . '", {
-       filebrowserBrowseUrl : "' . Router::url('/admin/mediamanager/connector/wysiwyg_browser/ckeditor/', true) . '"
-     });
-</script>';
+            switch ($this->__Wysiwyg['settings']['editor']) {
+                default:
+                    case 'ckeditor':
+                        $after .= '
+                            <script>
+                                CKEDITOR.replace("' . $field_id . '", {
+                                   filebrowserBrowseUrl : "' . Router::url('/admin/mediamanager/connector/wysiwyg_browser/ckeditor/', true) . '"
+                                 });
+                            </script>';
                 break;
             }
 
@@ -46,5 +52,4 @@ class MediamanagerHookHelper extends AppHelper {
 
         }
     }
-
 }
