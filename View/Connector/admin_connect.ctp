@@ -4,7 +4,7 @@ App::import('Lib', 'Mediamanager.elFinderLogger');
 Configure::write('debug', 0);
 
 $opts = array(
-	'root'            => APP . 'webroot' . DS . 'files', // path to root directory
+	'root'            => WWW_ROOT . 'files', // path to root directory
 	'URL'             => $this->Html->url('/files/', true), // root directory URL
 	'rootAlias'       => __d('mediamanager', 'Uploads'), // display this instead of root directory name
 	//'uploadAllow'   => array('images/*'),
