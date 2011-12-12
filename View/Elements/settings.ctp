@@ -20,6 +20,7 @@
   
 <script type="text/javascript" charset="utf-8">
     $().ready(function() {
+        $('#ModuleAdminSettingsForm div.submit').hide();
         $('#finder').elfinder({
             places: '',
             url : '<?php echo $this->Html->url('/admin/mediamanager/connector/connect', true); ?>',
