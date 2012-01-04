@@ -16,10 +16,23 @@
 
 <?php echo $this->Html->script('/mediamanager/js/elfinder/jquery-ui-1.8.13.custom.min.js'); ?>
 <?php echo $this->Html->script('/mediamanager/js/elfinder/elfinder.min.js'); ?>		
-<?php echo $this->Html->script('/mediamanager/js/elfinder/i18n/elfinder.' . $language_code . '.js'); ?>		
+<?php
+    if (file_exists(
+            CakePlugin::path('Mediamanager') .
+            'webroot' . DS . 'js' . DS . 'elfinder' . DS . 'i18n' . DS .
+            'elfinder.' . $language_code . '.js'
+        )
+    ) {
+        echo $this->Html->script('/mediamanager/js/elfinder/i18n/elfinder.' . $language_code . '.js');
+    }
+?>
   
 <script type="text/javascript" charset="utf-8">
     $().ready(function() {
+        $("#ModuleAdminSettingsForm").submit(function(e){
+          return false;
+        });
+
         $('#ModuleAdminSettingsForm div.submit').hide();
         $('#finder').elfinder({
             places: '',

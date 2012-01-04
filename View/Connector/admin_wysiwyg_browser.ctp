@@ -14,7 +14,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en">
     <head>
-        <?php echo $this->Html->script('jquery.js'); ?>
+        <?php echo $this->Html->script('/system/js/jquery.js'); ?>
         <?php echo $this->Html->css('/mediamanager/css/elfinder/smoothness/jquery-ui-1.8.13.custom.css'); ?>
         <?php echo $this->Html->css('/mediamanager/css/elfinder/elfinder.css'); ?>
 

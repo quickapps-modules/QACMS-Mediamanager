@@ -1,14 +1,9 @@
 <?php
+Configure::write('debug', 0);
 App::import('Lib', 'Mediamanager.ElFinder');
 App::import('Lib', 'Mediamanager.elFinderLogger');
-Configure::write('debug', 0);
 
-$URL = $this->Html->url('/files/', true);
-
-if (Configure::read('Variable.url_language_prefix')) {
-    $URL = str_replace_once('/' . Configure::read('Variable.language.code') . '/', '/', $URL);
-}
-
+$URL = strip_language_prefix($this->Html->url('/files/', true));
 $opts = array(
 	'root'            => WWW_ROOT . 'files', // path to root directory
 	'URL'             => $URL, // root directory URL
