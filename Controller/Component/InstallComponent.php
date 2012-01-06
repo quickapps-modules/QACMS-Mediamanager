@@ -1,20 +1,18 @@
 <?php
 class InstallComponent extends Component {
-	var $Controller = null;
-    
-    function beforeInstall($Installer) {
+    public function beforeInstall() {
         return true;
     }
     
-    function afterInstall($Installer) {
+    public function afterInstall() {
         return true;
     }
     
-    function beforeUninstall($Installer) {
+    public function beforeUninstall() {
         return true;
     }
     
-    function afterUninstall($Installer) {
+    public function afterUninstall() {
         return true;
     }
 }
