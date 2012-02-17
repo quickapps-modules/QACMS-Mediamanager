@@ -1,4 +1,4 @@
-<?php 
+<?php
     Configure::write('debug', 0);
     App::import('I18n', 'Locale');
 
@@ -19,8 +19,8 @@
         <?php echo $this->Html->css('/mediamanager/css/elfinder/elfinder.css'); ?>
 
         <?php echo $this->Html->script('/mediamanager/js/elfinder/jquery-ui-1.8.13.custom.min.js'); ?>
-        <?php echo $this->Html->script('/mediamanager/js/elfinder/elfinder.min.js'); ?>		
-        <?php echo $this->Html->script('/mediamanager/js/elfinder/i18n/elfinder.' . $language_code . '.js'); ?>		
+        <?php echo $this->Html->script('/mediamanager/js/elfinder/elfinder.min.js'); ?>
+        <?php echo $this->Html->script('/mediamanager/js/elfinder/i18n/elfinder.' . $language_code . '.js'); ?>
     </head>
 
     <body>
@@ -34,8 +34,8 @@
                     url : '<?php echo $this->Html->url('/admin/mediamanager/connector/connect'); ?>',
                     lang : '<?php echo $language_code; ?>',
                     docked : true,
-                    <?php 
-                        switch ($editor): 
+                    <?php
+                        switch ($editor):
                             case 'ckeditor': default:
                     ?>
                         editorCallback : function(url) {

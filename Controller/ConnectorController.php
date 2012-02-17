@@ -8,8 +8,8 @@ class ConnectorController extends MediamanagerAppController {
 
     public function admin_wysiwyg_browser($editor = 'ckeditor') {
         $this->layout = false;
-        $this->autoRender = true;   
+        $this->autoRender = true;
 
-        $this->set('editor', $editor);        
+        $this->set('editor', $editor);
     }
 }

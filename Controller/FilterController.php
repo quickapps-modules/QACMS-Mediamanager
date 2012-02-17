@@ -13,15 +13,15 @@ class FilterController extends MediamanagerAppController {
             exit;
         }
 
-        $this->request->query['file'] = 
+        $this->request->query['file'] =
             preg_replace(
                 array(
                     '/\/{2,}/i',    // 2 or more slash -> /
                     '#/$#',         // remove the trailing slash
                     '/^\//'         // remove start slash
-                ), 
+                ),
                 array(
-                    '/', 
+                    '/',
                     '',
                     ''
                 ),
@@ -43,24 +43,24 @@ class FilterController extends MediamanagerAppController {
         //TODO: Validate file access
         /*
             $user = $this->Session('Auth.User');
-            $file = $this->FileAccess->find('first', 
+            $file = $this->FileAccess->find('first',
                 array(
                     'conditions' => array('FileAccess.id' => $this->request->query['file'])
                 )
             );
-        
+
         */
-        
+
 		$this->set($params);
     }
 
-    function __findexts($filename) { 
-        $filename = strtolower($filename) ; 
-        $exts = split("[/\\.]", $filename) ; 
-        $n = count($exts)-1; 
-        $exts = $exts[$n]; 
+    function __findexts($filename) {
+        $filename = strtolower($filename) ;
+        $exts = split("[/\\.]", $filename) ;
+        $n = count($exts)-1;
+        $exts = $exts[$n];
 
-        return $exts; 
+        return $exts;
     }
 
     function admin_index(){
