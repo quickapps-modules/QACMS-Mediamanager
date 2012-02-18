@@ -3,7 +3,7 @@ Configure::write('debug', 0);
 App::import('Lib', 'Mediamanager.ElFinder');
 App::import('Lib', 'Mediamanager.elFinderLogger');
 
-$URL = strip_language_prefix($this->Html->url('/files/', true));
+$URL = QuickApps::strip_language_prefix($this->Html->url('/files/', true));
 $opts = array(
 	'root'            => WWW_ROOT . 'files', // path to root directory
 	'URL'             => $URL, // root directory URL
