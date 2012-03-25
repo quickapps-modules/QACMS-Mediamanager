@@ -44,6 +44,14 @@
                         }
                     <?php break; ?>
 
+                    <?php case 'tinymce': ?>
+                        editorCallback : function(url) {
+                            window.tinymceFileWin.document.forms[0].elements[window.tinymceFileField].value = url;
+                            window.tinymceFileWin.focus();
+                            window.close();
+                        }
+                    <?php break; ?>
+
                     <?php endswitch; ?>
                 })
             });

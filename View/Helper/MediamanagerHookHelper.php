@@ -37,9 +37,11 @@ class MediamanagerHookHelper extends AppHelper {
                     case 'ckeditor':
                         $after .= '
                             <script>
-                                CKEDITOR.replace("' . $field_id . '", {
-                                   filebrowserBrowseUrl : "' . Router::url('/admin/mediamanager/connector/wysiwyg_browser/ckeditor/', true) . '"
-                                 });
+                                $(document).ready(function() {
+                                    CKEDITOR.replace("' . $field_id . '", {
+                                       filebrowserBrowseUrl : "' . Router::url('/admin/mediamanager/connector/wysiwyg_browser/ckeditor/', true) . '"
+                                    });
+                                });
                             </script>';
                 break;
             }
@@ -49,7 +51,6 @@ class MediamanagerHookHelper extends AppHelper {
             } else {
                 $data['options']['after'] = $after;
             }
-
         }
     }
 }
