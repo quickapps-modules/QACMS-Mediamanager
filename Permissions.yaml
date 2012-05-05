@@ -1,0 +1,10 @@
+Controller:
+    Connector:
+        hidden:true
+Preset:
+    connector:
+        name: "View and manage files and directories"
+        acos:
+            Connector.admin_connect
+            Connector.admin_get_file
+            Connector.admin_wysiwyg_browser

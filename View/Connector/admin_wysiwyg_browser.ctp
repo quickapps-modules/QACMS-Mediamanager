@@ -1,5 +1,14 @@
 <?php
-    Configure::write('debug', 0);
+    $this->JqueryUI->theme('Mediamanager.smoothness');
+    $this->Layout->css('/mediamanager/css/elfinder.min.css');
+    $this->Layout->css('/mediamanager/css/theme.css');
+    $this->Layout->script('/mediamanager/js/jquery-ui-1.8.13.custom.min.js');
+    $this->Layout->script('/mediamanager/js/elfinder.min.js');
+    $this->JqueryUI->add('selectable');
+    $this->JqueryUI->add('draggable');
+    $this->JqueryUI->add('droppable');
+
+    Configure::write('debug', 2);
     App::import('I18n', 'Locale');
 
     $L10n = new L10n;
@@ -14,13 +23,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html lang="en">
     <head>
-        <?php echo $this->Html->script('/system/js/jquery.js'); ?>
-        <?php echo $this->Html->css('/mediamanager/css/elfinder/smoothness/jquery-ui-1.8.13.custom.css'); ?>
-        <?php echo $this->Html->css('/mediamanager/css/elfinder/elfinder.css'); ?>
-
-        <?php echo $this->Html->script('/mediamanager/js/elfinder/jquery-ui-1.8.13.custom.min.js'); ?>
-        <?php echo $this->Html->script('/mediamanager/js/elfinder/elfinder.min.js'); ?>
-        <?php echo $this->Html->script('/mediamanager/js/elfinder/i18n/elfinder.' . $language_code . '.js'); ?>
+        <?php echo $this->Layout->stylesheets(); ?>
+        <?php echo $this->Layout->javascripts(); ?>
+        <?php echo $this->Layout->header(); ?>
     </head>
 
     <body>
@@ -30,28 +35,33 @@
 
             $().ready(function() {
                 $('#finder').elfinder({
-                    places: '',
-                    url : '<?php echo $this->Html->url('/admin/mediamanager/connector/connect'); ?>',
+                    url : '<?php echo Router::url('/admin/mediamanager/connector/connect', true); ?>',
                     lang : '<?php echo $language_code; ?>',
-                    docked : true,
+                    dateFormat: '<?php echo __d('mediamanager', 'M d, Y h:i A'); ?>',
+                    fancyDateFormat: '<?php echo __d('mediamanager', '$1 H:m:i'); ?>',
+                    cookie : {
+                        expires : 30,
+                        domain  : '',
+                        path    : '/',
+                        secure  : false
+                    },
                     <?php
                         switch ($editor):
-                            case 'ckeditor': default:
+                            case 'ckeditor':
+                                default:
                     ?>
                         editorCallback : function(url) {
                             window.opener.CKEDITOR.tools.callFunction(funcNum, url);
                             window.close();
                         }
-                    <?php break; ?>
-
-                    <?php case 'tinymce': ?>
-                        editorCallback : function(url) {
-                            window.tinymceFileWin.document.forms[0].elements[window.tinymceFileField].value = url;
-                            window.tinymceFileWin.focus();
-                            window.close();
-                        }
-                    <?php break; ?>
-
+                        <?php break; ?>
+                        <?php case 'tinymce': ?>
+                            editorCallback : function(url) {
+                                window.tinymceFileWin.document.forms[0].elements[window.tinymceFileField].value = url;
+                                window.tinymceFileWin.focus();
+                                window.close();
+                            }
+                        <?php break; ?>
                     <?php endswitch; ?>
                 })
             });

@@ -1,8 +1,12 @@
 <?php
-    $this->Layout->css('/mediamanager/css/elfinder/smoothness/jquery-ui-1.8.13.custom.css');
-    $this->Layout->css('/mediamanager/css/elfinder/elfinder.css');
-    $this->Layout->script('/mediamanager/js/elfinder/jquery-ui-1.8.13.custom.min.js');
-    $this->Layout->script('/mediamanager/js/elfinder/elfinder.min.js');
+    $this->JqueryUI->theme('Mediamanager.smoothness');
+    $this->Layout->css('/mediamanager/css/elfinder.min.css');
+    $this->Layout->css('/mediamanager/css/theme.css');
+    $this->Layout->script('/mediamanager/js/jquery-ui-1.8.13.custom.min.js');
+    $this->Layout->script('/mediamanager/js/elfinder.min.js');
+    $this->JqueryUI->add('selectable');
+    $this->JqueryUI->add('draggable');
+    $this->JqueryUI->add('droppable');
 
     App::import('I18n', 'Locale');
 
@@ -15,13 +19,10 @@
         $language_code = 'en';
     }
 
-    if (file_exists(
-            CakePlugin::path('Mediamanager') .
-            'webroot' . DS . 'js' . DS . 'elfinder' . DS . 'i18n' . DS .
-            'elfinder.' . $language_code . '.js'
-        )
-    ) {
-        echo $this->Html->script('/mediamanager/js/elfinder/i18n/elfinder.' . $language_code . '.js');
+    $i18n = CakePlugin::path('Mediamanager') . 'webroot' . DS . 'js' . DS . 'i18n' . DS . "elfinder.{$language_code}.js";
+
+    if (file_exists($i18n)) {
+        $this->Layout->script('/mediamanager/js/i18n/elfinder.' . $language_code . '.js');
     }
 ?>
 
@@ -33,10 +34,17 @@
 
         $('#ModuleAdminSettingsForm div.submit').hide();
         $('#finder').elfinder({
-            places: '',
-            url : '<?php echo $this->Html->url('/admin/mediamanager/connector/connect', true); ?>',
+            url : '<?php echo Router::url('/admin/mediamanager/connector/connect', true); ?>',
             lang : '<?php echo $language_code; ?>',
-            docked : true
+            dateFormat: '<?php echo __d('mediamanager', 'M d, Y h:i A'); ?>',
+            fancyDateFormat: '<?php echo __d('mediamanager', '$1 H:m:i'); ?>',
+            cookie : {
+                expires : 30,
+                domain  : '',
+                path    : '/',
+                secure  : false
+            },
+            debug: <?php echo Configure::read('debug') > 0 ? 'true' : 'false'; ?>
         })
     });
 </script>
