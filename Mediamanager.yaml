@@ -1,5 +1,5 @@
 name: Media Manager
 description: Management of your files stored on your website
 category: User interface
-version: 1.0
-core: 1.x
+version: 1.1
+core: >=1.1

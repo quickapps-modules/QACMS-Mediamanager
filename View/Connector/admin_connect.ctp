@@ -1,9 +1,9 @@
 <?php
 Configure::write('debug', 0);
-App::import('Lib', 'Mediamanager.elFinderConnector');
-App::import('Lib', 'Mediamanager.elFinder');
-App::import('Lib', 'Mediamanager.elFinderVolumeDriver');
-App::import('Lib', 'Mediamanager.elFinderVolumeLocalFileSystem');
+App::uses('elFinderConnector', 'Mediamanager.Lib');
+App::uses('elFinder', 'Mediamanager.Lib');
+App::uses('elFinderVolumeDriver', 'Mediamanager.Lib');
+App::uses('elFinderVolumeLocalFileSystem', 'Mediamanager.Lib');
 
 $opts = array(
 	'roots' => array(
