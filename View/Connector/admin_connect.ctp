@@ -28,21 +28,27 @@ $opts = array(
 			'driver' => 'LocalFileSystem',
 			'path' => WWW_ROOT . 'files',
 			'URL' => QuickApps::strip_language_prefix(Router::url('/files/', true)),
-            'accessControl' => 'mediamanagerAccess'
+            'accessControl' => 'mediamanagerAccess',
+            'tmbCrop' => false,
+            'dateFormat' => __d('mediamanager', 'j M Y H:i')
 		),
 		array(
             'alias' => __d('mediamanager', 'Themes'),
 			'driver' => 'LocalFileSystem',
 			'path' => ROOT . DS . 'Themes' . DS . 'Themed',
 			'URL' => Router::url('/admin/mediamanager/connector/get_file/' . base64_encode(ROOT . DS . 'Themes' . DS . 'Themed') . '/?file=', true),
-            'accessControl' => 'mediamanagerAccess'
+            'accessControl' => 'mediamanagerAccess',
+            'tmbCrop' => false,
+            'dateFormat' => __d('mediamanager', 'j M Y H:i')
 		),
         array(
             'alias' => __d('mediamanager', 'Modules'),
 			'driver' => 'LocalFileSystem',
 			'path' => ROOT . DS . 'Modules',
 			'URL' => Router::url('/admin/mediamanager/connector/get_file/' . base64_encode(ROOT . DS . 'Modules') . '/?file=', true),
-            'accessControl' => 'mediamanagerAccess'
+            'accessControl' => 'mediamanagerAccess',
+            'tmbCrop' => false,
+            'dateFormat' => __d('mediamanager', 'j M Y H:i')
 		)
 	)
 );
