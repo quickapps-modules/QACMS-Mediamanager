@@ -8,7 +8,6 @@
     $this->JqueryUI->add('draggable');
     $this->JqueryUI->add('droppable');
 
-    Configure::write('debug', 2);
     App::import('I18n', 'Locale');
 
     $L10n = new L10n;
@@ -19,9 +18,15 @@
     } else {
         $language_code = 'en';
     }
+
+    $i18n = CakePlugin::path('Mediamanager') . 'webroot' . DS . 'js' . DS . 'i18n' . DS . "elfinder.{$language_code}.js";
+
+    if (file_exists($i18n)) {
+        $this->Layout->script('/mediamanager/js/i18n/elfinder.' . $language_code . '.js');
+    }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html lang="en">
+<html lang="<?php echo $language_code; ?>">
     <head>
         <?php echo $this->Layout->stylesheets(); ?>
         <?php echo $this->Layout->javascripts(); ?>
