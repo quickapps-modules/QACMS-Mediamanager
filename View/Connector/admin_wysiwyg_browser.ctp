@@ -55,13 +55,13 @@
                             case 'ckeditor':
                                 default:
                     ?>
-                        editorCallback : function(url) {
+                        getFileCallback : function(url) {
                             window.opener.CKEDITOR.tools.callFunction(funcNum, url);
                             window.close();
                         }
                         <?php break; ?>
                         <?php case 'tinymce': ?>
-                            editorCallback : function(url) {
+                            getFileCallback : function(url) {
                                 window.tinymceFileWin.document.forms[0].elements[window.tinymceFileField].value = url;
                                 window.tinymceFileWin.focus();
                                 window.close();
