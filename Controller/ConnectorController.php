@@ -3,6 +3,11 @@ class ConnectorController extends MediamanagerAppController {
 	public $name = 'Connector';
 	public $uses = array();
 
+	public function beforeFilter() {
+		$this->QuickApps->disableSecurity();
+		parent::beforeFilter();
+	}
+
     public function admin_connect() {
     }
 
