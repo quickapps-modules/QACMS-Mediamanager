@@ -1,12 +1,12 @@
 <?php
-    $this->JqueryUI->theme('Mediamanager.smoothness');
+    $this->jQueryUI->theme('Mediamanager.smoothness');
     $this->Layout->css('/mediamanager/css/elfinder.min.css');
     $this->Layout->css('/mediamanager/css/theme.css');
     $this->Layout->script('/mediamanager/js/jquery-ui-1.8.13.custom.min.js');
     $this->Layout->script('/mediamanager/js/elfinder.min.js');
-    $this->JqueryUI->add('selectable');
-    $this->JqueryUI->add('draggable');
-    $this->JqueryUI->add('droppable');
+    $this->jQueryUI->add('selectable');
+    $this->jQueryUI->add('draggable');
+    $this->jQueryUI->add('droppable');
 
     App::import('I18n', 'Locale');
 
