@@ -2,7 +2,6 @@
     $this->jQueryUI->theme('Mediamanager.smoothness');
     $this->Layout->css('/mediamanager/css/elfinder.min.css');
     $this->Layout->css('/mediamanager/css/theme.css');
-    $this->Layout->script('/mediamanager/js/jquery-ui-1.8.13.custom.min.js');
     $this->Layout->script('/mediamanager/js/elfinder.min.js');
     $this->jQueryUI->add('selectable');
     $this->jQueryUI->add('draggable');
@@ -27,10 +26,9 @@
 ?>
 
 <script type="text/javascript" charset="utf-8">
-    $().ready(function() {
-        $("#ModuleAdminSettingsForm").submit(function(e){
-          return false;
-        });
+    $(document).ready(function() {
+		$("#ModuleAdminSettingsForm").parent().append('<div id="finder">finder</div>');
+		$("#ModuleAdminSettingsForm").hide();
 
         $('#ModuleAdminSettingsForm div.submit').hide();
         $('#finder').elfinder({
@@ -48,5 +46,3 @@
         })
     });
 </script>
-
-<div id="finder">finder</div>

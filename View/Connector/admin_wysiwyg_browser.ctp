@@ -2,7 +2,6 @@
     $this->JqueryUI->theme('Mediamanager.smoothness');
     $this->Layout->css('/mediamanager/css/elfinder.min.css');
     $this->Layout->css('/mediamanager/css/theme.css');
-    $this->Layout->script('/mediamanager/js/jquery-ui-1.8.13.custom.min.js');
     $this->Layout->script('/mediamanager/js/elfinder.min.js');
     $this->JqueryUI->add('selectable');
     $this->JqueryUI->add('draggable');
@@ -38,6 +37,29 @@
             var funcNum = window.location.search.replace(/^.*CKEditorFuncNum=(\d+).*$/, "$1");
             var langCode = window.location.search.replace(/^.*langCode=([a-z]{2}).*$/, "$1");
 
+			function mm_checkUrl(url){
+				if (url.match(/\/get_file\//i)) {
+					var p = url.split('file=')[1];
+
+					if (url.match(/\/webroot\//i)) {
+						var appName = p.split('/')[0];
+						var wr = p.split('/webroot/')[1];
+
+						if (url.match(/type\=theme/i)) {
+							url = QuickApps.settings.base_url + 'theme/' + appName + '/' + wr;
+						} else {
+							appName = appName.replace(/([A-Z])/g, function($1) {
+								return '_' + $1.toLowerCase();
+							}).replace(/^_/i, '').replace(/(_){2,}/g, '_');
+
+							url = QuickApps.settings.base_url + appName + '/' + wr;
+						}
+					}
+				}
+				
+				return url;
+			}
+
             $().ready(function() {
                 $('#finder').elfinder({
                     url : '<?php echo Router::url('/admin/mediamanager/connector/connect', true); ?>',
@@ -56,13 +78,13 @@
                                 default:
                     ?>
                         getFileCallback : function(url) {
-                            window.opener.CKEDITOR.tools.callFunction(funcNum, url);
+                            window.opener.CKEDITOR.tools.callFunction(funcNum, mm_checkUrl(url));
                             window.close();
                         }
                         <?php break; ?>
                         <?php case 'tinymce': ?>
                             getFileCallback : function(url) {
-                                window.tinymceFileWin.document.forms[0].elements[window.tinymceFileField].value = url;
+                                window.tinymceFileWin.document.forms[0].elements[window.tinymceFileField].value = mm_checkUrl(url);
                                 window.tinymceFileWin.focus();
                                 window.close();
                             }

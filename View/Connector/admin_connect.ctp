@@ -36,7 +36,7 @@ $opts = array(
             'alias' => __d('mediamanager', 'Themes'),
 			'driver' => 'LocalFileSystem',
 			'path' => ROOT . DS . 'Themes' . DS . 'Themed',
-			'URL' => Router::url('/admin/mediamanager/connector/get_file/' . base64_encode(ROOT . DS . 'Themes' . DS . 'Themed') . '/?file=', true),
+			'URL' => Router::url('/admin/mediamanager/connector/get_file/' . base64_encode(ROOT . DS . 'Themes' . DS . 'Themed') . '/?type=theme&file=', true),
             'accessControl' => 'mediamanagerAccess',
             'tmbCrop' => false,
             'dateFormat' => __d('mediamanager', 'j M Y H:i')
@@ -45,7 +45,7 @@ $opts = array(
             'alias' => __d('mediamanager', 'Modules'),
 			'driver' => 'LocalFileSystem',
 			'path' => ROOT . DS . 'Modules',
-			'URL' => Router::url('/admin/mediamanager/connector/get_file/' . base64_encode(ROOT . DS . 'Modules') . '/?file=', true),
+			'URL' => Router::url('/admin/mediamanager/connector/get_file/' . base64_encode(ROOT . DS . 'Modules') . '/?type=module&file=', true),
             'accessControl' => 'mediamanagerAccess',
             'tmbCrop' => false,
             'dateFormat' => __d('mediamanager', 'j M Y H:i')
